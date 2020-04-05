@@ -1,0 +1,6 @@
+<div class="edit-text" id="edit-text" [ngClass]="{invisible: vartruefalse}">
+    <p>Edit text</p>
+    <div><input class="new-text" type="text" placeholder="New text of todo item..." [(ngModel)]="name"></div>
+    <input class="cancel" type="button" value="CANCEL" id="cancel" (click)="!showModal()">
+    <input class="save" type="button" value="SAVE" id="save" (click)="saveNametext(id, name)">
+</div>

@@ -1,0 +1,18 @@
+<div *ngIf="!load">
+    <div class="filter">
+        <input type="text" placeholder="filter item by task" [(ngModel)]="serchString">
+    </div>
+    <ul *ngIf="taskService.items.length; else noitems">
+        <li *ngFor="let item of taskService.items | ItemsFilter: serchString; let i=index" [class.done]="item.completed">
+            <strong>{{i}}</strong>
+            <div>{{item.date | date:"dd/MM/yyyy HH:mm"}}</div>
+            <div>{{item.rang}}</div>
+            <div>{{item.task}}</div>
+            <button (click)="onChange(item.id)">DONE</button>
+            <button (click)="EditItem(item.id)">EDIT</button>
+            <button (click)="remove(item.id)">X</button>
+        </li>
+    </ul>
+    <ng-template #noitems><p>No items yet!</p></ng-template>
+</div>
+<p *ngIf="load">Loading...</p>

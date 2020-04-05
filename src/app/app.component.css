@@ -1,0 +1,25 @@
+p {
+  font-family: Lato;
+}
+
+.container{
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+.vse{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+app-task-item{
+  width: 70%;
+}
+app-swimup{
+  width:30% ;
+  padding-top: 35px;
+}
+.invisible{
+  display: none;
+}
