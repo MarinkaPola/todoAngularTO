@@ -20,8 +20,8 @@ export class TaskItemComponent implements OnInit{
     onChange(id: number){
         this.taskService.onChange(id)
     }
-    EditItem(id: number){
-        this.taskService.EditItem(id)
+    EditItem(id: number, task: string){
+        this.taskService.EditItem(id, task)
     }
     remove(id:number){
         this.taskService.remove(id)

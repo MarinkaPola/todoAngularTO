@@ -21,7 +21,9 @@ export class SwimupComponent implements OnInit {
 
     ngOnInit() {
         this.subscription = this.taskService.getMessageEdit().subscribe(data => {
-            if (data.event === 'EditItem') this.showModal()
+            if (data.event === 'EditItem') this.showModal();
+            this.id = data.id;
+            this.name = data.task; console.log(this.name);
         });
 
     }
@@ -33,10 +35,14 @@ export class SwimupComponent implements OnInit {
     id: number;
     name: string;
 
-    saveNametext(id: number, name: string) {
+
+    saveNametext( name: string) {
         this.name = name;
+
         if (this.name != undefined) {
-            this.taskService.saveNametext(id, name);
-        }
+            this.taskService.saveNametext(this.id, name);
+        } this.name = ""; this.showModal();
     }
+
+
 }

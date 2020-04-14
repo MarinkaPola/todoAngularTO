@@ -35,7 +35,7 @@ export class TaskService {
 
     AddItem(item: Item) {
         this.items.push(item);
-        this.subj.next(this.items);
+      // this.subj.next(this.items);
         this.save();
     }
 
@@ -45,17 +45,16 @@ export class TaskService {
         this.save();
     }
 
-    EditItem(id: number) {
+    EditItem(id: number, task: string ) {
+        this.subjm.next({event: 'EditItem', id:id, task:task }); console.log(task);
 
-        this.subjm.next({event: 'EditItem'});
-        this.saveNametext(id, name);
-        this.subj.next(this.items);
-        this.save();
     }
 
     saveNametext(id: number, name: string) {
         const itemindex1 = this.items.findIndex(z => z.id === id);
         this.items[itemindex1].task = name;
+        this.save();
+        this.load();
     }
 
 
@@ -66,7 +65,7 @@ export class TaskService {
 
     remove(id: number) {
         this.items = this.items.filter(t => t.id !== id);
-        this.subj.next(this.items);
+        //this.subj.next(this.items);
         this.save();
     }
 
@@ -82,6 +81,7 @@ export class TaskService {
 
     save() {
         this.model.save(this.items);
+        this.subj.next(this.items);
     }
 
 

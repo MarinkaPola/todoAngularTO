@@ -9,7 +9,7 @@
             <div>{{item.rang}}</div>
             <div>{{item.task}}</div>
             <button (click)="onChange(item.id)">DONE</button>
-            <button (click)="EditItem(item.id)">EDIT</button>
+            <button (click)="EditItem(item.id, item.task)">EDIT</button>
             <button (click)="remove(item.id)">X</button>
         </li>
     </ul>
