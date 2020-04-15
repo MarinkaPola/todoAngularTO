@@ -9,9 +9,10 @@ import {ModelService} from "./model.service";
 import {TaskService} from "./task.service";
 import {ItemsFilterPipe} from "./items-filter.pipe";
 import {SwimupComponent} from "./swimup/swimup.component";
+import {SwimuptwoComponent} from "./swimuptwo/swimuptwo.component";
 
 @NgModule({
-    declarations: [AppComponent, TaskItemComponent, TaskAddComponent, SwimupComponent, ItemsFilterPipe],
+    declarations: [AppComponent, TaskItemComponent, TaskAddComponent, SwimupComponent, SwimuptwoComponent, ItemsFilterPipe],
     imports:[BrowserModule, HttpClientModule, FormsModule],
     providers:[ModelService, TaskService],
     bootstrap: [AppComponent]

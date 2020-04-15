@@ -1,0 +1,25 @@
+.delete-item{
+    margin-top: -64%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #f1f1f1;
+    width: 70%;
+    padding: 0.8em;
+    text-align: center;
+    display: block;}
+
+.delete-item p{margin-bottom: 2em; text-align: center;}
+
+.yes{background: #4ebdcb;
+    border-color: #4ebdcb;
+    border-style: solid;
+    width: 5rem;
+    height: 2rem;
+    margin-left: 6%;
+}
+.no{background: #f1f1f1;
+    border-color: grey;
+    border-style: solid;
+    border-width: 0.5px;
+    width: 5rem;
+    height: 2rem;}

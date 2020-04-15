@@ -11,14 +11,19 @@ p {
 .vse{
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 app-task-item{
   width: 70%;
 }
+.windows{display: flex;
+flex-direction: column;}
 app-swimup{
-  width:30% ;
-  padding-top: 35px;
+  width:100% ;
+  padding-top: 10px;
+}
+app-swimuptwo{
+  width:100% ;
 }
 .invisible{
   display: none;

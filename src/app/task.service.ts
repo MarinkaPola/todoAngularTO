@@ -18,6 +18,7 @@ export class TaskService {
     public items: Item[] = [];
     private subj: BehaviorSubject<any> = new BehaviorSubject([]);
     public subjm = new Subject<any>();
+    public subjo = new Subject<any>();
 
 
 
@@ -47,9 +48,7 @@ export class TaskService {
 
     EditItem(id: number, task: string ) {
         this.subjm.next({event: 'EditItem', id:id, task:task }); console.log(task);
-
     }
-
     saveNametext(id: number, name: string) {
         const itemindex1 = this.items.findIndex(z => z.id === id);
         this.items[itemindex1].task = name;
@@ -57,17 +56,18 @@ export class TaskService {
         this.load();
     }
 
-
     getMessageEdit(): Observable<any> {
-        return this.subjm.asObservable();
-    }
-
+        return this.subjm.asObservable();}
 
     remove(id: number) {
-        this.items = this.items.filter(t => t.id !== id);
-        //this.subj.next(this.items);
-        this.save();
+        this.subjo.next({event: 'remove', id:id });
     }
+    rem(id: number){ this.items = this.items.filter(t => t.id !== id);
+        this.save();
+        this.load();
+    }
+    getMessageremove(): Observable<any> {
+        return this.subjo.asObservable();}
 
     Sort(date: any) {
         this.items = this.items.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());

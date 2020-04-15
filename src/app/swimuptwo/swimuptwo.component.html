@@ -1,0 +1,5 @@
+<div class="delete-item" id="delete-item" [ngClass]="{invisible: shoublock}">
+    <p>Delete item?</p>
+    <input class="no" type="button"  value="NO" id="no" (click)="!showModal()">
+    <input class="yes" type="button"  value="YES" id="yes" (click)="rem(id)">
+</div>
