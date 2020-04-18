@@ -27,6 +27,7 @@ export class TaskService {
         private model: ModelService
     ) {
         this.load();
+        this.save();
     }
 
     // поток
@@ -36,7 +37,7 @@ export class TaskService {
 
     AddItem(item: Item) {
         this.items.push(item);
-      // this.subj.next(this.items);
+        // this.subj.next(this.items);
         this.save();
     }
 
@@ -53,7 +54,6 @@ export class TaskService {
         const itemindex1 = this.items.findIndex(z => z.id === id);
         this.items[itemindex1].task = name;
         this.save();
-        this.load();
     }
 
     getMessageEdit(): Observable<any> {
@@ -64,7 +64,7 @@ export class TaskService {
     }
     rem(id: number){ this.items = this.items.filter(t => t.id !== id);
         this.save();
-        this.load();
+
     }
     getMessageremove(): Observable<any> {
         return this.subjo.asObservable();}
@@ -75,14 +75,20 @@ export class TaskService {
     }
 
     load() {
-        this.items = this.model.load();
+        this.model.loadFromServer().subscribe(
+            (data: any) => {
+                console.log(data);
+                this.items = data;
+            }
+        );
         this.subj.next(this.items);
     }
 
-    save() {
-        this.model.save(this.items);
-        this.subj.next(this.items);
-    }
+  save() {
+      this.model.saveOnServer(this.items) ;
+   // this.subj.next(this.items);
+}
 
 
 }
+

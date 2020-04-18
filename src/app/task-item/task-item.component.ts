@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {TaskService} from "../task.service";
+import {ModelService} from "../model.service";
 
 @Component({
     selector: 'app-task-item',
@@ -8,13 +9,16 @@ import {TaskService} from "../task.service";
 })
 export class TaskItemComponent implements OnInit{
 
-    private load: boolean = true
-    private serchString: string =''
+    private load: boolean = true;
+    private serchString: string ='';
+    private items: [];
 
-    constructor(private taskService: TaskService){}
+    constructor(private taskService: TaskService, private model:ModelService){}
     ngOnInit(){
-        this.taskService.load()
-       this.load = false
+        this.model.saveOnServer(this.items);
+        this.model.loadFromServer().subscribe(()=>{
+            this.load = false;
+        })
     }
 
     onChange(id: number){

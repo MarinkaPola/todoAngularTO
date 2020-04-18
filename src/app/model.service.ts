@@ -1,22 +1,36 @@
 import { Injectable } from '@angular/core';
+import {HttpClient} from "@angular/common/http";
+import {map} from "rxjs/operators";
+import {Item} from "./task.service";
+import {consoleTestResultHandler, consoleTestResultsHandler} from "tslint/lib/test";
+
 
 @Injectable()
 export class ModelService {
 
-    storage: any = window.localStorage;
+    public items: Item[] =[];
+    private task: string;
+    constructor(private http: HttpClient) {}
 
-    readonly KEY: string = "ITEMS";
-
-    constructor() { }
-
-    save(data: any){
-        let dataStr = JSON.stringify(data);
-        this.storage.setItem(this.KEY, dataStr);
-    }
-
-    load(){
-        let dataStr = this.storage.getItem(this.KEY);
-        return dataStr ? JSON.parse(dataStr) : [];
-    }
-
+    loadFromServer(){
+        return this.http.get('https://jsonplaceholder.typicode.com/todos?_limit=7').pipe(
+            map((items: any) => {
+                return items.map( Item => {
+                    return {
+                        ...Item,
+                        id: Date.now(),
+                        date: new Date(),
+                        rang: 1,
+                        task: this.task,
+                        completed: false
+                    }
+                });
 }
+))}
+saveOnServer(items){
+
+       this.http.get('https://jsonplaceholder.typicode.com/todos?_limit=7');
+
+    }
+}
+
