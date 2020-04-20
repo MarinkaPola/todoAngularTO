@@ -29,7 +29,7 @@ export class ModelService {
 ))}
 saveOnServer(items){
 
-       this.http.get('https://jsonplaceholder.typicode.com/todos?_limit=7');
+       this.http.post('https://jsonplaceholder.typicode.com/todos?_limit=7', items); console.log(items);
 
     }
 }
